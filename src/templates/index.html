@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Custom Egg Preview</title>
-    <link rel="icon" href="../../static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
 </head>
 <body>
-    <h1>Hello World.</h1>
-
-    <h1>Endpoints</h1>
-    <p>.net/:base_color/:overlay_color</p>
-    <p>.net/:base_color</p>
+    {{ mkd_text|markdown }}
 </body>
 </html>

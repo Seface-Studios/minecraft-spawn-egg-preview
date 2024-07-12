@@ -1,21 +1,20 @@
-from flask import Flask, send_from_directory, render_template, make_response
+from flask import Flask, render_template, make_response, redirect
+from flask_misaka import Misaka
 from core.spawn_egg import *
 
 app = Flask(__name__)
+Misaka(app)
 
 @app.route('/')
-def home():
-    return render_template('index.html')
-
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory('static', 'favicon.ico')
+def index():
+    with open("src/static/content/index.md", 'r', encoding='utf-8') as arquivo:
+        mkd_text = arquivo.read()
+        return render_template('index.html', mkd_text=mkd_text)
+    # return redirect('https://www.sefacestudios.net')
 
 @app.route('/<base_color>/<overlay_color>', methods=['GET'])
 @app.route('/<base_color>', defaults={ 'overlay_color': '000000' }, methods=['GET'])
 def display_image(base_color, overlay_color):
-    print(f'BASE_COLOR: {base_color} | OVERLAY_COLOR: {overlay_color}')
-
     spawn_egg = SpawnEgg(base_color, overlay_color)
     image_buffer = spawn_egg.get_mounted_spawn_egg_buffer()
     

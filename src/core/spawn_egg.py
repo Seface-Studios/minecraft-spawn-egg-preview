@@ -6,8 +6,8 @@ from PIL import Image
 from core.utils.color import ColorUtils
 
 PREVIEW_SIZE = (128, 128)
-SPAWN_EGG_BASE_PATH = 'static/images/spawn_egg_base.png'
-SPAWN_EGG_OVERLAYE_PATH = 'static/images/spawn_egg_overlay.png'
+SPAWN_EGG_BASE_PATH = 'src/static/images/spawn_egg_base.png'
+SPAWN_EGG_OVERLAYE_PATH = 'src/static/images/spawn_egg_overlay.png'
 
 class SpawnEgg:
   def __init__(self, base_color, overlay_color) -> None:
