@@ -1,9 +1,13 @@
 import io
+import uuid
+import numpy as np
 from PIL import Image
 
+from core.utils.color import ColorUtils
+
 PREVIEW_SIZE = (128, 128)
-SPAWN_EGG_BASE_PATH = 'src/assets/spawn_egg_base.png'
-SPAWN_EGG_OVERLAYE_PATH = 'src/assets/spawn_egg_overlay.png'
+SPAWN_EGG_BASE_PATH = 'static/images/spawn_egg_base.png'
+SPAWN_EGG_OVERLAYE_PATH = 'static/images/spawn_egg_overlay.png'
 
 class SpawnEgg:
   def __init__(self, base_color, overlay_color) -> None:
@@ -39,13 +43,22 @@ class SpawnEgg:
 
     return buffer  
 
-
   def get_modified_buffer_from(self, path, color):
     with Image.open(path) as img:
       img = img.resize(PREVIEW_SIZE, Image.NEAREST)
-      
+      matrix = ColorUtils.hex_to_matrix(color)
+
+      img = img.convert("RGBA")
+      img_data = np.array(img)
+      transformed_data = img_data @ np.array(matrix).reshape(4, 5)[:, :4].T
+
+      transformed_img = Image.fromarray(transformed_data.astype(np.uint8), 'RGBA')
+
       buffer = io.BytesIO()
-      img.save(buffer, format = "PNG")
+      transformed_img.save(buffer, format = "PNG")
       buffer.seek(0)
 
       return buffer
+
+  def get_uuid(self):
+    return uuid.uuid5(uuid.NAMESPACE_DNS, f'{self.base_color}-{self.overlay_color}')
