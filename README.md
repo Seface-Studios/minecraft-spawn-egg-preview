@@ -16,7 +16,7 @@ Returns the full preview of a Spawn Egg. `#` is not parsed on the URL! Colors mu
   - The idea is create a side-project using this API to preview the Spawn Egg when hover at `spawn_egg` property from a client-side entity file of Minecraft Bedrock Edition resource pack. Can be util for Add-Ons developers that want to be sure to not repeat colors or put similar colos on base and overlay.
 
 ## Logic
-The main idea from the API is get the parsed HEX Color and convert into a Color Matrix and merge with Grayscale texture of the Spawn Egg.
+The main idea from the API is get the parsed HEX Color and convert into a Color Matrix and merge with Grayscale texture of the Spawn Egg. When both images are created, the system will merge into one and return the buffer as response.
 
 |   | Hexadecimal Color | Color Matrix | Preview |
 |:-:|:-------------------:|:--------------:|:---------:|
