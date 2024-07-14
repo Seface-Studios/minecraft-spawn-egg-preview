@@ -17,9 +17,10 @@ Returns the full preview of a Spawn Egg. **`#` is not parsed on the URL!** Color
 Same as the first endpoint but with specific size. Allowed Sizes: [16, 32, 64, 128, 256, 512]
 
 Any other value will have the following formula applied:
-$
+
+$$
 \text{x}(\text{size}) = \min\left(\max\left(16, 2^{\lceil \log_2(\text{size}) \rceil}\right), 512\right)
-$
+$$
 
 ## Roadmap
 
