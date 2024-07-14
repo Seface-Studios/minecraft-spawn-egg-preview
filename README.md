@@ -21,7 +21,7 @@ Returns the full preview of a Spawn Egg. `#` is not parsed on the URL! Colors mu
 |:-:|:-------------------:|:--------------:|:---------:|
 |![Spawn Egg Base](.github/assets/spawn_egg_base.png)| #8073FF | [0.5, 0, 0, 0, 0, 0, 0.45, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0] |![Spawn Egg Base Preview](.github/assets/spawn_egg_base_example.png)|
 |![Spawn Egg Overlay](.github/assets/spawn_egg_overlay.png)| #D4FF7A | [0.83, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0.48, 0, 0, 0, 0, 0, 1, 0] |![Spawn Egg Base Preview](.github/assets/spawn_egg_overlay_example.png)|
-|ㅤㅤㅤ|ㅤㅤㅤ|ㅤㅤㅤ|ㅤㅤㅤ|
+|ㅤㅤㅤ|ㅤㅤㅤ|ㅤㅤㅤ|ㅤㅤㅤㅤㅤㅤㅤㅤㅤ|
 |![Spawn Egg](.github/assets/spawn_egg.png)|                   |              |![Spawn Egg Preview](.github/assets/spawn_egg_example.png)|
 
 ---
