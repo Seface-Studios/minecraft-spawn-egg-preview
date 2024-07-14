@@ -1,8 +1,11 @@
+import os
 from flask import Flask, redirect, make_response
+from dotenv import load_dotenv
 from app.spawn_egg import *
 
+load_dotenv()
 app = Flask(__name__)
-app.config['DEBUG'] = True
+app.config['DEBUG'] = True if os.getenv('DEV_ENV') == 'true' else False
 
 @app.route('/')
 def index():
@@ -21,6 +24,8 @@ def display_image(size: int, base_color: str, overlay_color: str):
     return response
 
 if __name__ == '__main__':
-    print(f' * Use example: http://127.0.0.1:5000/8073FF/D4FF7A')
+    if (app.config['DEBUG']):
+        print(f' * Use example: http://127.0.0.1:5000/8073FF/D4FF7A')
+        
     app.run()
     
