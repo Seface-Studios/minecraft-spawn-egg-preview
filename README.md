@@ -8,7 +8,7 @@ A *very simple* REST API for Minecraft Spawn Egg preview.
 
 `GET` /<base_color>/<overlay_color>
 
-Returns the full preview of a Spawn Egg. `#` is not parsed on the URL! Colors must be `F0F0F0` instead of `#F0F0F0`.
+Returns the full preview of a Spawn Egg. **`#` is not parsed on the URL!** Colors must be `F0F0F0` instead of `#F0F0F0`.
 
 ## Roadmap
 
