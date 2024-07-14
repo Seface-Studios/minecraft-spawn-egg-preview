@@ -5,22 +5,24 @@ from PIL import Image
 
 from app.color_utils import ColorUtils
 
-PREVIEW_SIZE = (128, 128)
 SPAWN_EGG_BASE_PATH = 'static/images/spawn_egg_base.png'
 SPAWN_EGG_OVERLAYE_PATH = 'static/images/spawn_egg_overlay.png'
 
 class SpawnEgg:
-  def __init__(self, base_color: str, overlay_color: str) -> None:
+  def __init__(self, size: int, base_color: str, overlay_color: str) -> None:
     """
     Args:
+        base_color (int): The size of the image in pixels. Default: 128px
         base_color (str): The hexadecimal representing the base color. Default: FFFFFF
         overlay_color (str): The hexadecimal representing the overlay color. Default: 000000
     """
 
+    REAL_SIZE = min(max(16, 1 << ((size - 1).bit_length())), 512)
+
+    self.size = (REAL_SIZE, REAL_SIZE)
     self.base_color = base_color
     self.overlay_color = overlay_color
 
-  
   def get_mounted_spawn_egg_buffer(self) -> io.BytesIO:
     """
     Apply the colors to base and overlay textures and mergem them. 
@@ -36,8 +38,7 @@ class SpawnEgg:
 
   
   def get_modified_buffer_from(self, path: str, color: str) -> io.BytesIO:
-    """_summary_
-
+    """
     Args:
         path (str): The path to the image to have the color matrix applied into. 
         color (str): The hexadecimal color to be applied.
@@ -47,7 +48,7 @@ class SpawnEgg:
     """
 
     with Image.open(path) as img:
-      img = img.resize(PREVIEW_SIZE, Image.NEAREST)
+      img = img.resize(self.size, Image.NEAREST)
       matrix = ColorUtils.hex_to_matrix(color)
 
       img = img.convert("RGBA")
