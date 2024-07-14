@@ -10,6 +10,8 @@ A *very simple* REST API for Minecraft Spawn Egg preview.
 
 Returns the full preview of a Spawn Egg. **`#` is not parsed on the URL!** Colors must be `F0F0F0` instead of `#F0F0F0`.
 
+---
+
 `GET` /\<size>/\<base_color>/\<overlay_color>
 
 Same as the first endpoint but with specific size. Allowed Sizes: [16, 32, 64, 128, 256, 512]
