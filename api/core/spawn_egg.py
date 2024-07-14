@@ -3,10 +3,10 @@ import uuid
 import numpy as np
 from PIL import Image
 
-from app.color_utils import ColorUtils
+from core.color_utils import ColorUtils
 
-SPAWN_EGG_BASE_PATH = 'static/images/spawn_egg_base.png'
-SPAWN_EGG_OVERLAYE_PATH = 'static/images/spawn_egg_overlay.png'
+SPAWN_EGG_BASE_PATH = 'api/static/images/spawn_egg_base.png'
+SPAWN_EGG_OVERLAYE_PATH = 'api/static/images/spawn_egg_overlay.png'
 
 class SpawnEgg:
   def __init__(self, size: int, base_color: str, overlay_color: str) -> None:

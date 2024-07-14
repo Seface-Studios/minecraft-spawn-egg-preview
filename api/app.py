@@ -1,7 +1,7 @@
 import os
 from flask import Flask, redirect, make_response
 from dotenv import load_dotenv
-from app.spawn_egg import *
+from core.spawn_egg import *
 
 load_dotenv()
 app = Flask(__name__)
