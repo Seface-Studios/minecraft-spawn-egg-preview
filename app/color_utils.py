@@ -3,7 +3,17 @@ import re
 class ColorUtils:
   REGEX = "^([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$"
 
-  def hex_to_matrix(hex_color: str):
+  def hex_to_matrix(hex_color: str) -> tuple[int]:
+    """
+    Converts the hexadecimal color code into RGB color matrix.
+
+    Args:
+        hex_color (str): The color to be converted.
+
+    Returns:
+        tuple[int]: The color matrix.
+    """
+
     if (not ColorUtils.is_valid_hex(hex_color)):
       hex_color = "FFFFFF"
 
@@ -23,6 +33,13 @@ class ColorUtils:
     return matrix
   
   def is_valid_hex(color: str) -> bool:
+    """
+    Checks if the parsed color is a valid hexadecimal color.
+
+    Args:
+        color (str): The color to be verified.
+    """
+
     return bool(re.match(ColorUtils.REGEX, color))
 
   def decode(color: str):
