@@ -1,5 +1,6 @@
 import io
 import uuid
+import base64
 import numpy as np
 from PIL import Image
 
@@ -17,11 +18,10 @@ class SpawnEgg:
         overlay_color (str): The hexadecimal representing the overlay color. Default: 000000
     """
 
-    REAL_SIZE = min(max(16, 1 << ((size - 1).bit_length())), 512)
-
-    self.size = (REAL_SIZE, REAL_SIZE)
-    self.base_color = base_color
-    self.overlay_color = overlay_color
+    self.base64 = None
+    self.size = min(max(16, 1 << ((size - 1).bit_length())), 512)
+    self.base_color = ColorUtils.parse_shorthand_hex(base_color)
+    self.overlay_color = ColorUtils.parse_shorthand_hex(overlay_color, "000000")
 
   def get_mounted_spawn_egg_buffer(self) -> io.BytesIO:
     """
@@ -48,7 +48,7 @@ class SpawnEgg:
     """
 
     with Image.open(path) as img:
-      img = img.resize(self.size, Image.NEAREST)
+      img = img.resize((self.size, self.size), Image.NEAREST)
       matrix = ColorUtils.hex_to_matrix(color)
 
       img = img.convert("RGBA")
@@ -62,6 +62,23 @@ class SpawnEgg:
       buffer.seek(0)
 
       return buffer
+
+  def get_data(self):
+    return {
+      'uuid': self.get_uuid(),
+      'size': self.size,
+      'base_color': {
+        "hex": '#' + self.base_color,
+        "matrix": ColorUtils.hex_to_matrix(self.base_color)
+      },
+
+      'overlay_color': {
+        "hex": '#' + self.overlay_color,
+        "matrix": ColorUtils.hex_to_matrix(self.overlay_color)
+      },
+
+      'base64': 'data:image/png;base64,' + self.base64
+    }
 
   def merge_buffers(self, *buffers) -> io.BytesIO:
     """
@@ -91,6 +108,8 @@ class SpawnEgg:
     merged_image.save(merged_buffer, format = "PNG")
     merged_buffer.seek(0)  
 
+    self.base64 = base64.b64encode(merged_buffer.getvalue()).decode('utf-8')
+
     return merged_buffer
 
   def get_uuid(self) -> uuid.UUID:
@@ -98,7 +117,7 @@ class SpawnEgg:
     The UUID is used only when the user is saving the image to the PC. Also know as file name.
 
     Returns:
-        uuid.UUID: A UUID by the base and overlay color codes.
+        uuid.UUID: A UUID by the size, base and overlay color codes.
     """
 
-    return uuid.uuid5(uuid.NAMESPACE_DNS, f'{self.base_color}-{self.overlay_color}')
+    return uuid.uuid5(uuid.NAMESPACE_DNS, f'{self.size}px-{self.base_color}-{self.overlay_color}')

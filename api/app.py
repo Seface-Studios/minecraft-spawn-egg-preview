@@ -1,5 +1,5 @@
 import os
-from flask import Flask, redirect, make_response
+from flask import Flask, request, redirect, make_response, jsonify
 from dotenv import load_dotenv
 from core.spawn_egg import *
 
@@ -17,6 +17,11 @@ def display_image(size: int, base_color: str, overlay_color: str):
     spawn_egg = SpawnEgg(size, base_color, overlay_color)
     image_buffer = spawn_egg.get_mounted_spawn_egg_buffer()
     
+    return_data = request.args.get('data', 'false').lower() == 'true'
+
+    if (return_data):
+        return jsonify(spawn_egg.get_data())
+
     response = make_response(image_buffer.getvalue())
     response.headers.set('Content-Type', 'image/png')
     response.headers.set('Content-Disposition', 'inline', filename=f'{spawn_egg.get_uuid()}.png')

@@ -14,12 +14,6 @@ class ColorUtils:
         tuple[int]: The color matrix.
     """
 
-    if (not ColorUtils.is_valid_hex(hex_color)):
-      hex_color = "FFFFFF"
-
-    if (len(hex_color) == 3):
-      hex_color = hex_color[0] * 2 + hex_color[1] * 2 + hex_color[2] * 2
-
     matrix = [0] * 20
     r = int(hex_color[0:2], 16) / 255
     g = int(hex_color[2:4], 16) / 255
@@ -41,6 +35,15 @@ class ColorUtils:
     """
 
     return bool(re.match(ColorUtils.REGEX, color))
+
+  def parse_shorthand_hex(hex_color: str, default_color: str = "FFFFFF"):
+    if (not ColorUtils.is_valid_hex(hex_color)):
+      return default_color
+
+    if (len(hex_color) == 3):
+      hex_color = hex_color[0] * 2 + hex_color[1] * 2 + hex_color[2] * 2
+
+    return hex_color
 
   def decode(color: str):
     if (len(color) == 3):
