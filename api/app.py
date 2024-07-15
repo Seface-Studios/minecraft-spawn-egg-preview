@@ -24,7 +24,7 @@ def display_image(size: int, base_color: str, overlay_color: str):
 
     response = make_response(image_buffer.getvalue())
     response.headers.set('Content-Type', 'image/png')
-    response.headers.set('Content-Disposition', 'inline', filename=f'{spawn_egg.get_uuid()}.png')
+    response.headers.set('Content-Disposition', 'inline', filename=spawn_egg.filename)
     
     return response
 

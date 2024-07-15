@@ -7,14 +7,14 @@ A *very simple* REST API for Minecraft Spawn Egg preview.
 ## Endpoints
 
 `GET` /\<base_color>/\<overlay_color>
-#### `Example: http://localhost:5000/FF00FF/000`
+##### Example: http://localhost:5000/FF00FF/000
 
 Returns the full preview of a Spawn Egg. **`#` is not parsed on the URL!** Colors must be `F0F0F0` instead of `#F0F0F0`. This URL will use the default image size of 128px.
 
 ---
 
 `GET` /\<size>/\<base_color>/\<overlay_color>
-#### `Example: http://localhost:5000/64/FF00FF/000`
+##### Example: http://localhost:5000/64/FF00FF/000
 
 Same as the first endpoint but with specific size. Allowed Sizes: [16, 32, 64, 128, 256, 512]
 
@@ -40,7 +40,9 @@ When passing this argument into any endpoint the API will return the JSON data o
     "hex": "#D4FF7A",
     "matrix": [0.83..., 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0.47..., 0, 0, 0, 0, 0, 1, 0]
   },
-  "size": 64,
+  "width": 64,
+  "height": 64,
+  "filename": "64px-c59c8477-c3fa-5bb6-a6ef-b1db4f521e6e.png",
   "uuid": "2a976cd3-402f-5de7-aeeb-18bd0f7123d9"
 }
 ```

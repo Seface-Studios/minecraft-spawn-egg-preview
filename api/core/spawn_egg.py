@@ -19,6 +19,8 @@ class SpawnEgg:
     """
 
     self.base64 = None
+    self.filename = None
+
     self.size = min(max(16, 1 << ((size - 1).bit_length())), 512)
     self.base_color = ColorUtils.parse_shorthand_hex(base_color)
     self.overlay_color = ColorUtils.parse_shorthand_hex(overlay_color, "000000")
@@ -77,7 +79,8 @@ class SpawnEgg:
         "matrix": ColorUtils.hex_to_matrix(self.overlay_color)
       },
 
-      'base64': 'data:image/png;base64,' + self.base64
+      'filename': self.filename,
+      'base64': 'data:image/png;base64,' + self.base64,
     }
 
   def merge_buffers(self, *buffers) -> io.BytesIO:
@@ -109,6 +112,7 @@ class SpawnEgg:
     merged_buffer.seek(0)  
 
     self.base64 = base64.b64encode(merged_buffer.getvalue()).decode('utf-8')
+    self.filename = f'{self.size}px-{self.get_uuid()}.png'
 
     return merged_buffer
 
@@ -117,7 +121,7 @@ class SpawnEgg:
     The UUID is used only when the user is saving the image to the PC. Also know as file name.
 
     Returns:
-        uuid.UUID: A UUID by the size, base and overlay color codes.
+        uuid.UUID: A UUID by the base and overlay color codes.
     """
 
-    return uuid.uuid5(uuid.NAMESPACE_DNS, f'{self.size}px-{self.base_color}-{self.overlay_color}')
+    return uuid.uuid5(uuid.NAMESPACE_DNS, f'{self.base_color}-{self.overlay_color}')
