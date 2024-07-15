@@ -30,7 +30,7 @@ When passing this argumento into any endpoint the API will return the JSON data 
   "base64": "data:image/png;base64,...",
   "base_color": {
     "hex": "#8073FF",
-    "matrix": [0.50...6, 0, 0, 0, 0, 0, 0.45..., 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0]
+    "matrix": [0.50..., 0, 0, 0, 0, 0, 0.45..., 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0]
   },
   "overlay_color": {
     "hex": "#D4FF7A",
