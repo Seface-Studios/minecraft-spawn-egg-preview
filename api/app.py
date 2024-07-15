@@ -32,5 +32,5 @@ if __name__ == '__main__':
     if (app.config['DEBUG']):
         print(f' * Use example: http://127.0.0.1:5000/8073FF/D4FF7A')
         
-    app.run()
+    app.run(host="0.0.0.0", port=5000)
     
