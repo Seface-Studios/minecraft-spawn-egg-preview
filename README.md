@@ -40,8 +40,7 @@ When passing this argument into any endpoint the API will return the JSON data o
     "hex": "#D4FF7A",
     "matrix": [0.83..., 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0.47..., 0, 0, 0, 0, 0, 1, 0]
   },
-  "width": 64,
-  "height": 64,
+  "size": 64,
   "filename": "64px-c59c8477-c3fa-5bb6-a6ef-b1db4f521e6e.png",
   "uuid": "2a976cd3-402f-5de7-aeeb-18bd0f7123d9"
 }
