@@ -1,11 +1,6 @@
-import os
 from flask import Flask, request, redirect, make_response, jsonify
-from dotenv import load_dotenv
 from core.spawn_egg import *
-
-load_dotenv()
 app = Flask(__name__)
-app.config['DEBUG'] = True if os.getenv('DEV_ENV') == 'true' else False
 
 @app.route('/')
 def index():
@@ -28,9 +23,6 @@ def display_image(size: int, base_color: str, overlay_color: str):
     
     return response
 
-if __name__ == '__main__':
-    if (app.config['DEBUG']):
-        print(f' * Use example: http://127.0.0.1:5000/8073FF/D4FF7A')
-        
+if __name__ == '__main__': 
     app.run()
     
