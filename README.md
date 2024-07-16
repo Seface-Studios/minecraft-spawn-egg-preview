@@ -7,14 +7,14 @@ A *very simple* REST API for Minecraft Spawn Egg preview.
 ## Endpoints
 
 `GET` /\<base_color>/\<overlay_color>
-##### Example: http://localhost:5000/FF00FF/000
+##### Example: http://localhost:5000/DBCDC2/74A332 ![Result DBCDC2/74A332](.github/assets/32px-12335504-b338-57be-9cbf-935fc3e88a5b.png)
 
 Returns the full preview of a Spawn Egg. **`#` is not parsed on the URL!** Colors must be `F0F0F0` instead of `#F0F0F0`. This URL will use the default image size of 128px.
 
 ---
 
 `GET` /\<size>/\<base_color>/\<overlay_color>
-##### Example: http://localhost:5000/64/FF00FF/000
+##### Example: http://localhost:5000/64/F6B201/37C3F2 ![Result F6B201/37C3F2](.github/assets/32px-4c415622-4937-5da0-88ec-65b0af8e780b.png)
 
 Same as the first endpoint but with specific size. Allowed Sizes: [16, 32, 64, 128, 256, 512]
 
@@ -24,7 +24,7 @@ $$
 \text{x}(\text{size}) = \min\left(\max\left(16, 2^{\lceil \log_2(\text{size}) \rceil}\right), 512\right)
 $$
 
-### Passing `?data=<boolean>` argument
+### Passing the `?data=<boolean>` argument
 When passing this argument into any endpoint the API will return the JSON data of the Spawn Egg. The response will looks like this:
 
 ```jsonc
@@ -41,8 +41,8 @@ When passing this argument into any endpoint the API will return the JSON data o
     "matrix": [0.83..., 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0.47..., 0, 0, 0, 0, 0, 1, 0]
   },
   "size": 64,
-  "filename": "64px-c59c8477-c3fa-5bb6-a6ef-b1db4f521e6e.png",
-  "uuid": "2a976cd3-402f-5de7-aeeb-18bd0f7123d9"
+  "filename": "64px-59c8477-c3fa-5bb6-a6ef-b1db4f521e6e.png",
+  "uuid": "59c8477-c3fa-5bb6-a6ef-b1db4f521e6e"
 }
 ```
 
