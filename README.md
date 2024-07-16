@@ -8,7 +8,8 @@ A *very simple* REST API for Minecraft Spawn Egg preview.
 
 `GET` /\<base_color>/\<overlay_color>
 ##### Example: http://localhost:5000/DBCDC2/74A332
-![Result DBCDC2/74A332](.github/assets/32px-12335504-b338-57be-9cbf-935fc3e88a5b.png)
+> ![Result DBCDC2/74A332](.github/assets/32px-12335504-b338-57be-9cbf-935fc3e88a5b.png)
+> Ignore the image size for this example, we are usin a 32px image on the README just to be more simple to visualize.
 
 Returns the full preview of a Spawn Egg. **`#` is not parsed on the URL!** Colors must be `F0F0F0` instead of `#F0F0F0`. This URL will use the default image size of 128px.
 
@@ -16,7 +17,8 @@ Returns the full preview of a Spawn Egg. **`#` is not parsed on the URL!** Color
 
 `GET` /\<size>/\<base_color>/\<overlay_color>
 ##### Example: http://localhost:5000/64/F6B201/37C3F2
-![Result F6B201/37C3F2](.github/assets/32px-4c415622-4937-5da0-88ec-65b0af8e780b.png)
+> ![Result F6B201/37C3F2](.github/assets/32px-4c415622-4937-5da0-88ec-65b0af8e780b.png)
+> Ignore the image size for this example, we are usin a 32px image on the README just to be more simple to visualize.
 
 Same as the first endpoint but with specific size. Allowed Sizes: [16, 32, 64, 128, 256, 512]
 
